@@ -1,27 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { login } from './api';
 
-// Double Check best practice:
-
-// handleInputChange = e => {
-//   this.setState({
-//     [e.target.name]: e.target.value
-//   });
-// };
-
-const LoginPage = ({ props }) => {
+const LoginPage = (props) => {
+  console.log('props in LoginPage', props);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleInputChange = e => {
-    if(e.target.name === 'username') {
-      setUsername(e.target.value)
-    } else if (e.target.name === 'password') {
-      setPassword(e.target.value)
-    }
-  }
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -50,7 +36,7 @@ const LoginPage = ({ props }) => {
           <input
             name="username"
             value={username}
-            onChange={handleInputChange}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </label>
         <label>
@@ -59,7 +45,7 @@ const LoginPage = ({ props }) => {
             name="password"
             type="password"
             value={password}
-            onChange={handleInputChange}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </label>
         {error && <div className="error">{error.message}</div>}

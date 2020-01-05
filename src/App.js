@@ -1,33 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom';
 import LoginPage from './LoginPage';
 // import MainPage from './MainPage';
 import './index.css';
 
-class App extends React.Component {
-  state = {
-    currentUser: null
-  };
+const App = () => {
+  const [currentUser, setCurrentUser] = useState(null)
 
-  handleLogin = user => {
-    this.setState({ currentUser: user });
-  };
-
-  handleLogout = () => {
-    this.setState({ currentUser: null });
-  };
-
-  render() {
-    return this.state.currentUser ? (
-      // <MainPage
-      //   currentUser={this.state.currentUser}
-      //   onLogout={this.handleLogout}
-      // />
-      <h1>Main Page</h1>
-    ) : (
-      <LoginPage onLogin={this.handleLogin} />
-    );
+  const handleLogin = (user) => {
+    setCurrentUser(user)
   }
+
+  const handleLogout = () => {
+    setCurrentUser(null)
+  }
+
+  return currentUser ? (
+        // <MainPage
+        //   currentUser={this.state.currentUser}
+        //   onLogout={this.handleLogout}
+        // />
+        <h1>Main Page</h1>
+      ) : (
+        <LoginPage onLogin={handleLogin} />
+      );
 }
+
 
 export default App
