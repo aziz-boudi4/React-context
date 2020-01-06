@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom';
 import LoginPage from './LoginPage';
-// import MainPage from './MainPage';
+import MainPage from './MainPage';
 import './index.css';
 
 const App = () => {
@@ -16,11 +16,10 @@ const App = () => {
   }
 
   return currentUser ? (
-        // <MainPage
-        //   currentUser={this.state.currentUser}
-        //   onLogout={this.handleLogout}
-        // />
-        <h1>Main Page</h1>
+        <MainPage
+          currentUser={currentUser}
+          onLogout={handleLogout}
+        />
       ) : (
         <LoginPage onLogin={handleLogin} />
       );
