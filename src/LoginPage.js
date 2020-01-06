@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { login } from './api';
 
 const LoginPage = (props) => {
-  console.log('props in LoginPage', props);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
