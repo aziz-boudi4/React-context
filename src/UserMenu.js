@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import UserContext from './UserContext';
 
 const UserMenu = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -29,20 +30,24 @@ const UserMenu = (props) => {
   };
 
   return (
-    <div className="UserMenu">
-      <img
-        className="UserAvatar"
-        alt="User avatar"
-        src={props.currentUser.avatar}
-        onClick={toggleMenu}
-        ref={avatarRef}
-      />
-      {menuVisible && (
-        <ul>
-          <li onClick={props.onLogout}>Logout</li>
-        </ul>
-      )}
-    </div>
+    <UserContext.Consumer>
+    {(user) =>
+      <div className="UserMenu">
+        <img
+          className="UserAvatar"
+          alt="User avatar"
+          src={user.avatar}
+          onClick={toggleMenu}
+          ref={avatarRef}
+        />
+        {menuVisible && (
+          <ul>
+            <li onClick={props.onLogout}>Logout</li>
+          </ul>
+        )}
+      </div>
+    }
+    </UserContext.Consumer>
   )
 
 }
