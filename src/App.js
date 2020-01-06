@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom';
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
+import UserContext from './UserContext';
 import './index.css';
 
 const App = () => {
