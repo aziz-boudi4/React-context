@@ -31,7 +31,7 @@ const UserMenu = (props) => {
 
   return (
     <UserContext.Consumer>
-    {(user) =>
+    {({user, onLogout}) =>
       <div className="UserMenu">
         <img
           className="UserAvatar"
@@ -42,7 +42,7 @@ const UserMenu = (props) => {
         />
         {menuVisible && (
           <ul>
-            <li onClick={props.onLogout}>Logout</li>
+            <li onClick={onLogout}>Logout</li>
           </ul>
         )}
       </div>
