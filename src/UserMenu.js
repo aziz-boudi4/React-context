@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import UserContext from './UserContext';
+import { UserConsumer } from './UserContext';
 
 const UserMenu = () => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -30,7 +30,7 @@ const UserMenu = () => {
   };
 
   return (
-    <UserContext.Consumer>
+    <UserConsumer>
     {({ user, onLogout }) =>
       <div className="UserMenu">
         <img
@@ -47,7 +47,7 @@ const UserMenu = () => {
         )}
       </div>
     }
-    </UserContext.Consumer>
+    </UserConsumer>
   )
 
 }
