@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { login } from './api';
+import UserContext from './UserContext';
 
 const LoginPage = (props) => {
   const [error, setError] = useState(null);
@@ -8,7 +9,7 @@ const LoginPage = (props) => {
   const [password, setPassword] = useState('');
 
 
-  const handleSubmit = e => {
+  const handleSubmit = (e, onLogin) => {
     e.preventDefault();
 
     setLoading(true);
@@ -17,7 +18,7 @@ const LoginPage = (props) => {
     login(username, password)
       .then(user => {
         setLoading(false)
-        props.onLogin(user);
+        onLogin(user);
       })
       .catch(error => {
         setError(error)
@@ -28,31 +29,35 @@ const LoginPage = (props) => {
 
 
   return (
-    <div className="LoginPage">
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username
-          <input
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        {error && <div className="error">{error.message}</div>}
-        <button type="submit" disabled={loading}>
-          Sign In
-        </button>
-      </form>
-    </div>
+    <UserContext.Consumer>
+    {({ onLogin }) =>
+        <div className="LoginPage">
+          <form onSubmit={e => handleSubmit(e, onLogin)}>
+            <label>
+              Username
+              <input
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </label>
+            <label>
+              Password
+              <input
+                name="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+            {error && <div className="error">{error.message}</div>}
+            <button type="submit" disabled={loading}>
+              Sign In
+            </button>
+          </form>
+        </div>
+      }
+    </UserContext.Consumer>
   )
 }
 

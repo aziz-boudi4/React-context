@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import UserContext from './UserContext';
 
-const UserMenu = (props) => {
+const UserMenu = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const avatarRef = useRef(null);
 
@@ -31,7 +31,7 @@ const UserMenu = (props) => {
 
   return (
     <UserContext.Consumer>
-    {({user, onLogout}) =>
+    {({ user, onLogout }) =>
       <div className="UserMenu">
         <img
           className="UserAvatar"

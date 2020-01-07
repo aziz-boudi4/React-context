@@ -16,18 +16,20 @@ const App = () => {
     setCurrentUser(null)
   }
 
-  return currentUser ? (
+  return (
       <UserContext.Provider
         value={{
           user: currentUser,
           onLogin: handleLogin,
           onLogout: handleLogout
         }}>
-        <MainPage onLogout={handleLogout}/>
-      </UserContext.Provider>
-      ) : (
-        <LoginPage onLogin={handleLogin} />
-      );
+        {currentUser ? (
+          <MainPage />
+        ) : (
+          <LoginPage />
+        )}
+    </UserContext.Provider>
+  )
 }
 
 
