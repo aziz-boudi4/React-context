@@ -3,20 +3,23 @@ import ReactDOM from 'react-dom';
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
 import { UserProvider, UserConsumer } from './UserContext';
+import { EmailProvider } from './EmailContext';
 import './index.css';
 
 const App = () => {
   return (
     <UserProvider>
-      <UserConsumer>
-        {({ user }) =>
-          user ? (
-            <MainPage />
-          ) : (
-            <LoginPage />
-          )
-        }
-      </UserConsumer>
+      <EmailProvider>
+        <UserConsumer>
+          {({ user }) =>
+            user ? (
+              <MainPage />
+            ) : (
+              <LoginPage />
+            )
+          }
+        </UserConsumer>
+      </EmailProvider>
     </UserProvider>
   )
 }
