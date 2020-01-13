@@ -15,8 +15,6 @@ const EmailProvider = (props) => {
 
     fetchEmails()
       .then(emails => {
-        console.log('.........................');
-
         console.log('emails', emails);
         setLoading(false);
         setEmails(emails)
